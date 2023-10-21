@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+</head>
+<style>
+    body{
+        height: 100svh;
+        display:grid;
+        place-content:center;
+    }
+    .clock{
+        height:400px;
+        width:400px;
+        border:3px solid black;
+        border-radius: 50%;
+        background-image: url("https://clipart-library.com/images/rTjKp5Kec.jpg");
+        background-size: cover;
+
+        /* position: relative;
+        margin: auto;
+        z-index:-2;
+        background: blue;
+        border-radius: 50%;
+     // background-image:url("https://t3.ftcdn.net/jpg/00/73/94/78/360_F_73947882_rxVMGN1wMRxfuYW2OeR2svG28St3VwOD.jpg") */
+    }
+
+    .dot{
+        position:absolute;
+        background: rgba(242, 255, 0, 0.797);
+        width:23px;
+        height:23px;
+        border-radius: 50%;
+        inset:0;
+        margin:auto;
+        z-index:14;
+        bottom:-3%;
+    }
+
+
+    .hands{
+        height:130px;
+        width:3px;
+        background-color: black;
+        position: absolute;
+        /* top:50%;
+        left:50%;
+        transform:translate(-50%,-50%); */
+        inset:0;
+        margin:auto;
+        transform-origin:bottom;
+        bottom:19%;
+    }
+    .hour
+    {
+        height:100px;
+        bottom:15%;
+      //  transform:rotate(30deg);
+
+    }
+    .min{
+       // background-color: blue;
+        transform:rotate(120deg);
+    }
+    .second{
+       
+        background-color: red;
+
+    }
+</style>
+<body>
+    <div class="clock">
+        <!-- <img class="clock" width="100%"  height="100%" style="z-index:-9;" src="https://t3.ftcdn.net/jpg/00/73/94/78/360_F_73947882_rxVMGN1wMRxfuYW2OeR2svG28St3VwOD.jpg" alt="">
+         -->
+         <div class="dot"></div>
+         <div class="hands hour"></div>
+         <div class="hands min"></div>
+         <div class="hands second"></div>
+    
+    </div>
+    <script>
+        let hrhand=document.querySelector('.hour');
+        let minthand=document.querySelector('.min');
+        let sechand=document.querySelector('.second');
+
+
+        function drawClockHands()
+        {
+            var today = new Date();
+            var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+            // Set current time in clock
+            let addhr=Math.floor(today.getMinutes()/12)*6;
+           // console.log(addhr)
+            let degHr=(today.getHours()*30)+addhr ;
+            let degMin=today.getMinutes()*6;
+            let degSec=today.getSeconds()*6;
+
+            // console.log(today.getMinutes())
+
+            // console.log(Math.floor(today.getMinutes()/12))
+
+           // console.log(today.getMinutes()%12*6)
+            // drwa hands
+            hrhand.style.transform=`rotate(${degHr}deg)`
+            minthand.style.transform=`rotate(${degMin}deg)`
+            sechand.style.transform=`rotate(${degSec}deg)`
+
+
+            
+
+        }
+
+        
+
+        setInterval(drawClockHands, 1000)
+
+
+
+        //setInterval(drawClockHands(), 1000);
+
+        
+
+        
+
+       
+
+       
+
+       // alert(time);
+
+    </script>
+   
+    <!-- <canvas id="clock" width="200" height="200"></canvas>
+    <script>
+        // Get the canvas element and its context
+        const canvas = document.getElementById('clock');
+        const ctx = canvas.getContext('2d');
+
+        // Set the center point of the clock
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+
+        // Function to draw the clock face
+        function drawClockFace() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, 90, 0, 2 * Math.PI);
+            ctx.stroke();
+            ctx.closePath();
+        }
+
+        // Function to draw the clock hands
+        function drawClockHands() {
+            const now = new Date();
+            const seconds = now.getSeconds();
+            const secondsAngle = (seconds / 60) * 2 * Math.PI - Math.PI / 2;
+
+            // Draw the second hand
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.lineTo(centerX + Math.cos(secondsAngle) * 80, centerY + Math.sin(secondsAngle) * 80);
+            ctx.strokeStyle = 'red';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.closePath();
+        }
+
+        // Function to update the clock
+        function updateClock() {
+            drawClockFace();
+            drawClockHands();
+        }
+
+        // Update the clock every second
+        setInterval(updateClock, 1000);
+        
+        // Initial rendering
+        updateClock();
+    </script>
+ -->
+
+   
+    
+    
+</body>
+</html>
